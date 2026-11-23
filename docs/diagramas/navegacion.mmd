@@ -1,0 +1,15 @@
+flowchart TD
+    L["Iniciar sesión<br/>/login"] -->|credenciales válidas| D["Panel principal<br/>/dashboard"]
+    L -.-> R["Recuperar contraseña<br/>enlace por correo"]
+    D --> CL["Clientes"] --> CL1["Listado · búsqueda · filtro"] --> CL2["Detalle · adeudo · recibos"]
+    D --> CO["Cobros"] --> CO1["Listado · filtro por estado"] --> CO2["Detalle del recibo"]
+    D --> PA["Pagos"] --> PA1["Historial · filtro por método"] --> PA2["Comprobante<br/>imprimir / descargar"]
+    D --> RP["Reportes"] --> RP1["Mes actual o elegido<br/>/reportes/{año?}/{mes?}"] --> RP2["CSV · Imprimir"]
+    D --> US["Usuarios<br/>(solo administrador)"] --> US1["Alta · edición · baja · roles"]
+    CL1 -.->|admin / cajero| CLF["Registrar / editar cliente"]
+    CO1 -.->|admin / cajero| COF["Registrar / editar recibo"]
+    PA1 -.->|admin / cajero| PAF["Registrar pago completo"]
+    classDef op fill:#e8f4fc,stroke:#0879bd,color:#102a43;
+    classDef admin fill:#fff4d6,stroke:#8a5a00,color:#102a43;
+    class CLF,COF,PAF op;
+    class US,US1 admin;

@@ -1,0 +1,23 @@
+sequenceDiagram
+    actor Cajero
+    participant R as Ruta POST /pagos
+    participant MW as Middleware auth + rol
+    participant FR as PagoRequest
+    participant S as RegistroPagoService
+    participant DB as Base de datos
+    participant E as Evento PagoRegistrado
+    Cajero->>R: recibo, método, fecha, comprobante
+    R->>MW: ¿sesión y rol admin/cajero?
+    MW-->>Cajero: 403 si es rol consulta
+    MW->>FR: autorizar (PagoPolicy) y validar
+    FR-->>Cajero: errores + datos conservados (old)
+    FR->>S: datos validados
+    S->>DB: BEGIN + bloquear recibo (lockForUpdate)
+    S->>DB: ¿cancelado o ya pagado? ¿monto = importe?
+    S-->>Cajero: error de validación (sin abonos / duplicado)
+    S->>DB: guardar comprobante privado + INSERT pago (importe del recibo)
+    S->>DB: COMMIT
+    S->>E: disparar evento
+    E->>DB: Listener 1: recibo → pagado
+    E-->>Cajero: Listener 2: correo de confirmación al cliente
+    S-->>Cajero: redirección al comprobante + mensaje de éxito

@@ -1,0 +1,5 @@
+HydroPay 1.0.0 — versión final (Actividad 7)
+Fecha: 2026-11-21
+Laravel framework: v13.34.0 (composer.lock) · PHP 8.4 · Laravel Sanctum 4
+Regla de cobranza: un pago completo por recibo; sin parcialidades.
+Pruebas: 100 (Pest). Ejecutar con: php artisan test

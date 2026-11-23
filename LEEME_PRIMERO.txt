@@ -1,0 +1,71 @@
+HYDROPAY 1.0.0 — VERSIÓN FINAL (ACTIVIDAD 7)
+Fecha: 21 de noviembre de 2026
+
+QUÉ CONTIENE
+- Código final comentado: MVC, autenticación, roles, middleware VerificarRol, Policies, Form Requests,
+  servicios, reportes mensuales, API REST con Laravel Sanctum zonas (municipio y localidad), cuota por cliente con recibos automáticos (mensual, bimestral o anual) y 112 pruebas Pest.
+- Documentación en docs/: documento técnico (.md y .docx), manuales de instalación y usuario, API,
+  diccionario de datos, casos de prueba, bitácora de IA, Git/GitHub, evidencias, diagramas y colección Postman.
+- .vscode/: extensiones recomendadas y ajustes de Visual Studio Code para el proyecto.
+- Scripts (PowerShell):
+    scripts\preparar_entorno.ps1   equipo: Git, VS Code + extensiones, GitHub CLI, Postman, revisión de PHP 8.4
+    instalar_hydropay.ps1          proyecto: dependencias, Sanctum, .env, base, migraciones, datos y pruebas
+    scripts\git_version_final.ps1  historial: commits por tema en la rama feature/actividad-7-version-final
+    scripts\publicar_github.ps1    GitHub: issues, Pull Request, merge, etiqueta v1.0.0 y Release
+
+NO INCLUYE (a propósito)
+- .env (contiene tu clave privada), vendor/, la base database/database.sqlite ni logs.
+
+------------------------------------------------------------------------------------------
+ORDEN COMPLETO EN TU COMPU (Windows + Laravel Herd)
+------------------------------------------------------------------------------------------
+Cierra VS Code y detén "php artisan serve" si están abiertos. Abre PowerShell (no hace falta administrador).
+
+PASO 1. Reemplazar la carpeta conservando tu historial de Git
+   cd $env:USERPROFILE\Herd
+   Rename-Item HydroPay HydroPay_respaldo
+   Expand-Archive "$env:USERPROFILE\Downloads\HydroPay_v1.0.0.zip" -DestinationPath .
+   Copy-Item HydroPay_respaldo\.git HydroPay\.git -Recurse -Force
+   cd HydroPay
+
+   - Si tu carpeta vieja NO tenía .git, antes del Rename-Item guarda su estado como primer commit
+     (las dos primeras líneas solo si Git nunca te ha pedido nombre y correo):
+       git config --global user.name "Tu Nombre"
+       git config --global user.email "tu-correo-de-github@ejemplo.com"
+       cd HydroPay ; git init -b main ; git add -A ; git commit -m "Estado de las actividades 5 y 6" ; cd ..
+   - Tu .env y tu base vieja no se copian: el instalador crea un .env nuevo con su propia clave y una base
+     limpia con datos de demostración. Si tenías configurado el correo (MAIL_*), copia esas líneas a mano.
+   - Los archivos viejos que ya no existen (welcome, ExampleTest, Vite, docs anteriores, etc.) Git los
+     verá como eliminados y el script de commits los registra.
+
+PASO 2. Preparar el equipo (una sola vez)
+   Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+   .\scripts\preparar_entorno.ps1
+   Si al final muestra pendientes (por ejemplo, PHP de XAMPP antes que el de Herd), resuélvelos,
+   abre otra terminal y vuelve a ejecutarlo.
+
+PASO 3. Instalar el proyecto y correr las pruebas
+   .\instalar_hydropay.ps1
+   Toma captura del resultado de "php artisan test" (evidencia).
+
+PASO 4. Abrir y probar
+   code .                    (VS Code ofrece las extensiones recomendadas)
+   php artisan serve         http://127.0.0.1:8000   (con Herd también: http://hydropay.test)
+   Postman: Import > docs\postman\HydroPay_API.postman_collection.json y HydroPay_local.postman_environment.json
+            Selecciona el entorno "HydroPay local" > Run collection.
+
+PASO 5. Historial y publicación en GitHub
+   .\scripts\git_version_final.ps1     (commits por tema; revisa con: git log --oneline)
+   .\scripts\publicar_github.ps1       (issues, Pull Request, merge, v1.0.0 y Release)
+   El script se detiene antes de integrar el Pull Request para que tomes la captura.
+   Alternativa sin GitHub CLI: .\scripts\git_version_final.ps1 -Publicar
+
+USUARIOS DE DEMOSTRACIÓN
+   Administrador: admin@hydropay.test / HydroPayAdmin2026!
+   Cajero:        cajero@hydropay.test / HydroPayCajero2026!
+   Consulta:      consulta@hydropay.test / HydroPayConsulta2026!
+
+PENDIENTE DEL ESTUDIANTE (no se puede inventar)
+- Datos de portada y URL del repositorio en el documento técnico.
+- Resultado real de php artisan test y de Postman, y las capturas de docs\EVIDENCIAS.md.
+- Celdas [Completar] de la bitácora de IA (sesiones propias y aprendizajes).
