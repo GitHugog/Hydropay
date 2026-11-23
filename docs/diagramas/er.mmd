@@ -1,0 +1,60 @@
+erDiagram
+    CLIENTES ||--o{ COBROS : "tiene"
+    COBROS ||--o| PAGOS : "se liquida con"
+    USERS ||--o{ PAGOS : "registra"
+    USERS ||--o{ PERSONAL_ACCESS_TOKENS : "posee (API)"
+
+    CLIENTES {
+        bigint id PK
+        varchar nombre
+        varchar numero_cuenta UK
+        varchar direccion
+        varchar telefono
+        varchar email
+        boolean activo
+        timestamp created_at
+        timestamp updated_at
+    }
+    COBROS {
+        bigint id PK
+        bigint cliente_id FK
+        varchar periodo "UK con cliente_id"
+        decimal monto
+        date fecha_vencimiento
+        varchar estado
+        text descripcion
+        timestamp created_at
+        timestamp updated_at
+    }
+    PAGOS {
+        bigint id PK
+        bigint cobro_id FK "UK"
+        bigint user_id FK "nullable"
+        decimal monto
+        varchar metodo
+        varchar referencia
+        date fecha_pago
+        varchar comprobante
+        timestamp created_at
+        timestamp updated_at
+    }
+    USERS {
+        bigint id PK
+        varchar name
+        varchar email UK
+        varchar password "hash bcrypt"
+        varchar rol
+        varchar remember_token
+        timestamp created_at
+        timestamp updated_at
+    }
+    PERSONAL_ACCESS_TOKENS {
+        bigint id PK
+        varchar tokenable_type
+        bigint tokenable_id
+        text name
+        varchar token UK "hash SHA-256"
+        text abilities
+        timestamp last_used_at
+        timestamp expires_at
+    }

@@ -1,0 +1,24 @@
+// Ajustes de Visual Studio Code solo para este proyecto.
+{
+    // Intelephense analiza el código como PHP 8.4 (versión que exige composer.lock).
+    "intelephense.environment.phpVersion": "8.4.0",
+    // Desactiva la validación básica de PHP de VS Code; Intelephense ya la hace.
+    "php.validate.enable": false,
+    // Emmet (abreviaturas HTML) también dentro de las vistas Blade.
+    "emmet.includeLanguages": { "blade": "html" },
+    // Fin de línea LF, igual que .editorconfig y .gitattributes.
+    "files.eol": "\n",
+    // Quita espacios sobrantes al guardar.
+    "files.trimTrailingWhitespace": true,
+    // Las búsquedas ignoran dependencias y archivos generados.
+    "search.exclude": {
+        "vendor": true,
+        "storage/framework": true,
+        "storage/logs": true,
+        "bootstrap/cache": true
+    },
+    // Oculta del explorador la carpeta de cachés compiladas.
+    "files.exclude": {
+        "bootstrap/cache/*.php": true
+    }
+}

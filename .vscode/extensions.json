@@ -1,0 +1,24 @@
+// Extensiones recomendadas para trabajar HydroPay en Visual Studio Code.
+// Al abrir la carpeta, VS Code ofrece instalarlas (también las instala scripts/preparar_entorno.ps1).
+{
+    "recommendations": [
+        // Laravel oficial: autocompletado de rutas, vistas, config y traducciones; resaltado de Blade.
+        "laravel.vscode-laravel",
+        // Análisis de PHP: autocompletado, ir a definición y errores mientras escribes.
+        "bmewburn.vscode-intelephense-client",
+        // Ejecutar pruebas Pest desde el editor.
+        "m1guelpf.better-pest",
+        // Resaltado del archivo .env.
+        "mikestead.dotenv",
+        // Respeta las reglas de .editorconfig (sangría y fin de línea).
+        "editorconfig.editorconfig",
+        // Ver las tablas de database/database.sqlite.
+        "qwtel.sqlite-viewer",
+        // Diagramas Mermaid de docs/diagramas en la vista previa de Markdown.
+        "bierner.markdown-mermaid",
+        // Historial de Git por línea y por archivo.
+        "eamodio.gitlens",
+        // Pull requests e issues de GitHub dentro del editor.
+        "github.vscode-pull-request-github"
+    ]
+}

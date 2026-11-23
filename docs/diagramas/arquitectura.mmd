@@ -1,0 +1,36 @@
+flowchart TD
+    NAV["🖥️ Navegador<br/>personal del organismo"]
+    PM["🔌 Postman / app externa"]
+    WEB["routes/web.php<br/>sesión + CSRF"]
+    API["routes/api.php · /api/v1<br/>token Bearer (Sanctum)"]
+    MWW["Middleware<br/>auth · rol:admin,cajero · throttle"]
+    MWA["Middleware<br/>auth:sanctum · abilities · throttle"]
+    CW["Controladores web<br/>Cliente · Cobro · Pago · Usuario · Reporte · Auth"]
+    CA["Controladores API<br/>Auth · Cliente · Cobro · Pago · Resumen"]
+    FR["Form Requests<br/>autorización + limpieza + validación"]
+    POL["Policies + Gate<br/>permisos por rol y estado del registro"]
+    SRV["Servicios<br/>RegistroPago · Resumen (Cache) · ReporteMensual"]
+    EL["Modelos Eloquent<br/>User · Cliente · Cobro · Pago"]
+    DB[("SQLite (desarrollo)<br/>MySQL/PostgreSQL (producción)")]
+    EV["Evento PagoRegistrado<br/>→ Listeners → Notificación por correo"]
+    BL["Vistas Blade<br/>layout + parciales + componentes"]
+    RS["API Resources<br/>JSON en español"]
+
+    NAV --> WEB --> MWW --> CW
+    PM --> API --> MWA --> CA
+    CW --> FR
+    CA --> FR
+    FR --> POL --> SRV
+    SRV --> EL --> DB
+    SRV --> EV
+    CW --> BL
+    CA --> RS
+
+    classDef entrada fill:#e8f4fc,stroke:#0879bd,color:#102a43;
+    classDef capa fill:#ffffff,stroke:#5f7183,color:#102a43;
+    classDef datos fill:#e6f7ef,stroke:#16805d,color:#102a43;
+    classDef salida fill:#fff4d6,stroke:#8a5a00,color:#102a43;
+    class NAV,PM entrada;
+    class WEB,API,MWW,MWA,CW,CA,FR,POL,SRV capa;
+    class EL,DB datos;
+    class BL,RS,EV salida;
