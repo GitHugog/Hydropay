@@ -650,7 +650,7 @@ Operaciones críticas con `try/catch` y transacción (registro de pago, eliminac
 | Compilación de 42 vistas Blade | Sin errores |
 | Arnés de ejecución (Eloquent + SQLite): migraciones, seeder, policies, servicios, eventos, caché, reportes, traducciones y renderizado de todas las vistas con los tres roles | 118 comprobaciones correctas |
 | `php artisan test` (112 pruebas) en PHP 8.4 | **112 aprobadas, 399 aserciones, 7.14 s** en el equipo del estudiante (PHP 8.4.25 con Laravel Herd, 23/11/2026); captura en el Anexo H |
-| Colección Postman en Collection Runner (37 solicitudes) | [Completar] |
+| Colección Postman en Collection Runner (37 solicitudes) | **46 de 46 pruebas aprobadas, 0 fallidas, 0 errores**; 6.7 s, respuesta promedio 108 ms (entorno *HydroPay local*, 23/11/2026); captura en el Anexo H |
 | Pruebas manuales UX-01 a UX-07 | [Completar] |
 
 # 19. Control de versiones

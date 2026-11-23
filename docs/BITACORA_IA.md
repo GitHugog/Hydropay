@@ -75,7 +75,7 @@ La versión de la actividad 6 también se generó con apoyo de IA. En la revisi�
 | Arnés de ejecución con Eloquent + SQLite en memoria | Migraciones, seeder, policies, servicio de pagos, eventos, caché, reportes, scopes, traducciones y renderizado de todas las vistas con los 3 roles | 117 comprobaciones correctas (21/11/2026) |
 | Cruce de nombres de ruta | Cada `route('…')` usado existe | Sin faltantes |
 | `php artisan test` en el equipo del estudiante (PHP 8.4) | Suite Pest completa (112 pruebas) | **112 aprobadas, 399 aserciones** (23/11/2026, PHP 8.4.25 con Herd). Antes, el 22/11, 1 de 100 falló (error 19 de la sección 18.7) y se corrigió |
-| Colección Postman (Collection Runner) | 37 solicitudes con validación automática del código HTTP | [Completar con el resultado real] |
+| Colección Postman (Collection Runner) | 37 solicitudes con validación automática del código HTTP | **46 de 46 pruebas aprobadas, 0 fallidas** (23/11/2026, entorno *HydroPay local*) |
 | Prueba manual en navegador y modo celular | Navegación, formularios, mensajes | [Completar] |
 
 > La suite Pest no pudo ejecutarse en el entorno de la IA porque ese entorno tenía PHP 8.3 y las dependencias bloqueadas requieren PHP 8.4. Por eso la ejecución en el equipo del estudiante es obligatoria antes de entregar.
