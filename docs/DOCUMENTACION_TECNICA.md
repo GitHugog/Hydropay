@@ -10,12 +10,12 @@ lang: es-MX
 |---|---|
 | Proyecto | HydroPay |
 | Versión | 1.0.0 (versión final, Actividad 7) |
-| Fecha | 21 de noviembre de 2026 |
-| Estudiante | [Completar nombre completo] |
-| Código / matrícula | [Completar] |
+| Fecha | 23 de noviembre de 2026 |
+| Estudiante | Hugo Ascari Gutiérrez Padilla |
+| Código | 215331313 |
 | Asignatura | Tópicos Selectos de Tecnologías II |
 | Profesor | Luis Alberto Luquin Pérez |
-| Institución | [Completar] |
+| Institución | Centro Universitario de los Valles (CUValles), Universidad de Guadalajara |
 | Repositorio | <https://github.com/GitHugog/Hydropay> (Release `v1.0.0`) |
 | Tecnologías | Laravel 13.34, PHP 8.4, Eloquent, Blade, SQLite, Laravel Sanctum 4, Pest 5 |
 
@@ -695,11 +695,11 @@ Sintaxis, compilación de vistas, arnés de ejecución, 112 pruebas Pest, colecc
 
 ## 20.7 Aprendizajes
 
-[Completar por el estudiante.]
+Detalle en el Anexo F, sección 7. En resumen: configurar el entorno real (PHP 8.4 de Herd frente al 8.2 de XAMPP, GitHub CLI con `winget`); que las pruebas automáticas detectan errores que no se ven a simple vista (1 de 100 falló en mi equipo y se corrigió; al final 112 en verde); leer el mensaje de error completo antes de actuar; trabajar con Git como en un equipo (commits por tema, rama, issues, Pull Request, etiqueta y Release); no versionar el `.env`; la seguridad por capas (middleware, Policy y Form Request), y que el diseño debe pensarse para quien lo usa.
 
 ## 20.8 Ética y autoría
 
-La IA se usó como asistente; el estudiante es responsable de lo entregado y de explicarlo. No se compartieron datos personales reales, el uso de IA se declara de forma explícita y no se presentan resultados de pruebas no ejecutadas.
+Usé Claude como herramienta de desarrollo: con mis indicaciones generó y revisó código, pruebas y documentación, y yo dirigí el trabajo, tomé las decisiones y validé el resultado. Definí la idea y el problema (cobro del agua en localidades retiradas de la cabecera), las reglas del negocio (cuota y periodicidad asignadas por el administrador, cobro del cajero en la localidad, zonas, pagos completos sin abonos) y el diseño (interfaz pensada para el cajero, en azul de agua); configuré el entorno, ejecuté las pruebas, resolví los errores de instalación y publiqué el proyecto en GitHub. Soy responsable de lo entregado y puedo explicarlo en la demostración. No se compartieron datos personales reales (los datos de prueba son ficticios), el uso de la herramienta se declara de forma explícita y no se presentan resultados de pruebas no ejecutadas. Declaración completa en el Anexo F, sección 8.
 
 # 21. Revisión final del proyecto
 

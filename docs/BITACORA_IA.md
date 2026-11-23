@@ -29,7 +29,8 @@ Este documento registra con transparencia cómo se usó IA generativa en HydroPa
 | 5 | 22/11/2026 | Claude | Actividad 7 (mejoras del estudiante) | "Que el administrador asigne si es anual, bimestral o mensual y cuánto debe… y espacios para poner los pueblos o el municipio" | Cuota y periodicidad por cliente con recibos automáticos y catálogo de zonas; el estudiante definió el flujo (administrador en la presidencia asigna la cuota; cajero cobra en la localidad) |
 | 6 | 23/11/2026 | Claude | Actividad 7 (diseño) | "El diseño tuyo y de ChatGPT tienen un mismo diseño, que no parezca que lo hizo una IA; lo quiero fácil de usar, limpio y con buen diseño" | Rediseño completo de la interfaz (sección 17.1): identidad verde agave, pestañas, buscador primero, tipografía para baja visión; se eliminaron las etiquetas en mayúsculas, las flechas y las tarjetas repetidas |
 | 7 | 23/11/2026 | Claude | Actividad 7 (diseño) | "Pero un color azul de agua, ¿por qué verde?" | Decisión del estudiante: identidad azul agua profundo `#0F4C81` con línea azul claro del nivel del agua en lugar del verde agave propuesto |
-| 8 | [Completar] | | | | |
+| 8 | 23/11/2026 | Claude | Actividad 7 (documentación) | "¿Qué es Postman? Y lo de la reflexión, escríbelo como piensas que lo haría yo" | Explicación de Postman y borrador en primera persona de las secciones 7 (Aprendizajes) y 8 (Ética y autoría), basado en mis decisiones y en lo que pasó al instalar y publicar; lo revisé antes de entregar |
+| 9 | [Completar] | | | | |
 
 ## 4. Sugerencias de la IA y decisión tomada
 
@@ -59,7 +60,11 @@ La versión de la actividad 6 también se generó con apoyo de IA. En la revisi�
 | Menú lateral en celular (ocupaba toda la pantalla) | **Corregido** → menú desplegable | Revisión de diseño responsivo | ☐ |
 | Vista `welcome`, `ExampleTest`, comando `inspire`, Vite/Tailwind sin uso, archivos de agentes de IA | **Descartados** | No forman parte del sistema final | ☐ |
 | Seeder con todos los pagos fechados "hoy" | **Corregido** | Los reportes mensuales no tenían datos realistas | ☐ |
-| [Completar: cambios que hiciste tú a mano] | | | |
+| Recibos capturados a mano para cada cliente | **Modificado por mí** → cuota y periodicidad (mensual, bimestral o anual) por cliente, asignadas solo por el administrador, con recibos automáticos | Así trabaja un organismo: en la presidencia se fija la cuota y el cajero cobra en la localidad | ☐ |
+| Clientes sin ubicación | **Modificado por mí** → zonas por municipio y localidad, con filtro en el listado | Organizar el padrón por pueblo y que cada cajero vea a sus clientes | ☐ |
+| Diseño con menú lateral oscuro, tarjetas iguales y etiquetas en mayúsculas | **Descartado por mí** | Se veía como plantilla hecha por IA; pedí algo limpio y fácil para el cajero | ☐ |
+| Color verde agave que propuso la IA para el rediseño | **Descartado por mí** → azul agua `#0F4C81` | El sistema es de agua y el azul se reconoce de inmediato | ☐ |
+| Edición equivocada en `ApiCobrosPagosTest.php` al corregir una prueba | **Revertido por mí** con Ctrl+Z | Pegué el cambio en el archivo que no era; las pruebas lo detectaron (ParseError) | ☐ |
 
 ## 6. Validación del código generado
 
@@ -77,9 +82,26 @@ La versión de la actividad 6 también se generó con apoyo de IA. En la revisi�
 
 ## 7. Aprendizajes
 
-- [Completar con tus palabras. Sugerencias: diferencia entre middleware, Policy y Form Request; por qué el monto del pago se toma del servidor; cómo funciona un token Bearer y sus habilidades; por qué `.env` no se versiona; cómo leer el log para encontrar errores.]
+- **El entorno importa tanto como el código.** Tenía XAMPP con PHP 8.2 y Herd con PHP 8.4; aprendí a revisar con `php -v` y `where.exe php` cuál se está usando, porque este proyecto solo funciona con 8.4. También aprendí a instalar herramientas desde la terminal con `winget` (así instalé GitHub CLI) y a conectar la terminal con mi cuenta de GitHub.
+- **Las pruebas automáticas sí sirven.** En mi computadora, 1 de 100 pruebas falló aunque el código parecía correcto (en Laravel 13 cambió la forma de leer los errores de la sesión). Sin las pruebas no me habría dado cuenta. Al final quedaron 112 pruebas en verde.
+- **Leer el error completo antes de entrar en pánico.** El instalador decía "revisa tu conexión a internet", pero el problema real era otro paquete (`boost:update`) que corría antes de existir el `.env`. También me pasó dos veces que el proyecto quedó en una carpeta dentro de otra, y con `dir` y `Test-Path artisan` encontré dónde estaba.
+- **Git y GitHub como se usan en un equipo de trabajo.** Commits separados por tema, una rama para la versión final, issues para cada problema, un Pull Request que los cierra con `Closes #N`, una etiqueta `v1.0.0` y un Release. Antes solo había subido proyectos sencillos a GitHub.
+- **El `.env` nunca se sube.** Guarda la clave de la aplicación; lo comprobé con `git check-ignore .env` antes de publicar.
+- **La seguridad va por capas.** El middleware revisa el rol antes de entrar a la ruta, la Policy decide sobre un registro en particular (por ejemplo, un recibo pagado ya no se edita) y el Form Request valida los datos. Lo vi funcionando cuando el cajero intenta mandar una cuota y el sistema la rechaza aunque mande el dato.
+- **El diseño también es parte de la solución.** Pensar en quién lo usa (un cajero en la localidad, a veces desde el celular) cambió el orden de la pantalla de inicio: primero buscar al cliente y después lo demás.
 
 ## 8. Ética y autoría
+
+**Declaración del estudiante.** En este proyecto usé Claude (Anthropic) como herramienta de desarrollo: con mis indicaciones generó y revisó código, pruebas y documentación, y yo dirigí el trabajo, tomé las decisiones y validé el resultado en mi equipo. Lo que definí y realicé:
+
+- **La idea y el problema:** un sistema para cobrar el agua en viviendas y localidades retiradas de la cabecera municipal, que no tienen un portal de gobierno para eso.
+- **Las reglas del negocio:** el administrador, desde la presidencia, asigna la zona, la periodicidad y la cuota; el cajero cobra en la localidad; los recibos se pagan completos y sin abonos.
+- **El diseño:** descarté la primera propuesta porque se veía genérica, pedí una interfaz limpia pensada para el cajero y elegí el azul de agua.
+- **La puesta en marcha:** configuré el entorno en mi computadora (Herd, PHP 8.4, Composer, Git y GitHub CLI), ejecuté las 112 pruebas, detecté y resolví los errores que salieron al instalar y publiqué el proyecto en GitHub con issues, Pull Request y Release.
+
+Soy responsable de lo entregado y puedo explicar cada parte en la demostración. Para redactar esta bitácora también me apoyé en la herramienta.
+
+Además:
 
 - La IA se usó como **asistente**. El estudiante es responsable del contenido entregado, de entender cada parte y de poder explicarla en la demostración.
 - Todo el código generado se revisó, se comentó línea por línea en español y se validó con pruebas automatizadas; no se presentan resultados de pruebas que no se hayan ejecutado.
