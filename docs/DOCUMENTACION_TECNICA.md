@@ -16,7 +16,7 @@ lang: es-MX
 | Asignatura | Tópicos Selectos de Tecnologías II |
 | Profesor | Luis Alberto Luquin Pérez |
 | Institución | [Completar] |
-| Repositorio | `https://github.com/[USUARIO]/HydroPay` [Completar] |
+| Repositorio | <https://github.com/GitHugog/Hydropay> (Release `v1.0.0`) |
 | Tecnologías | Laravel 13.34, PHP 8.4, Eloquent, Blade, SQLite, Laravel Sanctum 4, Pest 5 |
 
 # 2. Introducción
@@ -649,7 +649,7 @@ Operaciones críticas con `try/catch` y transacción (registro de pago, eliminac
 | Sintaxis PHP (`php -l`) de todo el código | Sin errores |
 | Compilación de 42 vistas Blade | Sin errores |
 | Arnés de ejecución (Eloquent + SQLite): migraciones, seeder, policies, servicios, eventos, caché, reportes, traducciones y renderizado de todas las vistas con los tres roles | 118 comprobaciones correctas |
-| `php artisan test` (112 pruebas) en PHP 8.4 | [Completar con el resultado y la captura] |
+| `php artisan test` (112 pruebas) en PHP 8.4 | **112 aprobadas, 399 aserciones, 7.14 s** en el equipo del estudiante (PHP 8.4.25 con Laravel Herd, 23/11/2026); captura en el Anexo H |
 | Colección Postman en Collection Runner (37 solicitudes) | [Completar] |
 | Pruebas manuales UX-01 a UX-07 | [Completar] |
 
@@ -657,12 +657,12 @@ Operaciones críticas con `try/catch` y transacción (registro de pago, eliminac
 
 Repositorio, convención de commits, ramas, issues, integración, release `v1.0.0` e historial: **sección completa en `docs/GIT_GITHUB.md`** (incluida en este documento como parte del Anexo G). Resumen:
 
-- **19.1 Repositorio:** GitHub, rama `main`; `.env`, `vendor/` y la base SQLite fuera del control de versiones.
-- **19.2 Commits:** Conventional Commits en español, once commits temáticos para la versión final.
-- **19.3 Ramas:** `main` estable y una rama `feature/*` por actividad.
-- **19.4 Issues:** ocho issues (errores y mejoras de la sección 18.7) cerrados con `Closes #N`.
-- **19.5 Integración:** Pull Request con pruebas en verde y `merge --no-ff`.
-- **19.6 Release:** etiqueta anotada `v1.0.0` y Release en GitHub con el CHANGELOG.
+- **19.1 Repositorio:** <https://github.com/GitHugog/Hydropay>, creado el 23/11/2026; rama `main`; `.env`, `vendor/` y la base SQLite fuera del control de versiones.
+- **19.2 Commits:** Conventional Commits en español: commit inicial y commits temáticos de la versión final.
+- **19.3 Ramas:** `main` estable y `feature/actividad-7-version-final` para la versión final.
+- **19.4 Issues:** diez issues (#1 a #10: errores y mejoras de la sección 18.7) cerrados por el Pull Request con `Closes #N`.
+- **19.5 Integración:** Pull Request #11 con las 112 pruebas en verde, integrado con merge commit.
+- **19.6 Release:** etiqueta anotada `v1.0.0` y Release en GitHub con las notas del CHANGELOG, el documento técnico y la colección Postman.
 - **19.7 Historial:** `git log --oneline --graph --decorate --all`.
 
 # 20. Uso de Inteligencia Artificial Generativa

@@ -34,8 +34,8 @@ El script instala dependencias, instala Laravel Sanctum si falta, crea `.env` y 
 
 ```powershell
 # 1. Obtener el código
-git clone https://github.com/USUARIO/HydroPay.git
-cd HydroPay
+git clone https://github.com/GitHugog/Hydropay.git
+cd Hydropay
 
 # 2. Dependencias de PHP (incluye laravel/sanctum)
 composer install

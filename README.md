@@ -37,8 +37,8 @@ Publicación en GitHub: `.\scripts\git_version_final.ps1` (commits por tema) y `
 Instalación manual:
 
 ```powershell
-git clone https://github.com/USUARIO/HydroPay.git
-cd HydroPay
+git clone https://github.com/GitHugog/Hydropay.git
+cd Hydropay
 composer install                                  # Dependencias (incluye laravel/sanctum)
 Copy-Item .env.example .env                       # Configuración local
 php artisan key:generate                          # Clave de la aplicación

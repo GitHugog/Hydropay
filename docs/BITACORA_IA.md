@@ -69,7 +69,7 @@ La versión de la actividad 6 también se generó con apoyo de IA. En la revisi�
 | Compilación de las 42 vistas Blade con el compilador de Laravel | Sintaxis Blade y componentes | Sin errores (21/11/2026) |
 | Arnés de ejecución con Eloquent + SQLite en memoria | Migraciones, seeder, policies, servicio de pagos, eventos, caché, reportes, scopes, traducciones y renderizado de todas las vistas con los 3 roles | 117 comprobaciones correctas (21/11/2026) |
 | Cruce de nombres de ruta | Cada `route('…')` usado existe | Sin faltantes |
-| `php artisan test` en el equipo del estudiante (PHP 8.4) | Suite Pest completa (112 pruebas) | [Completar con el resultado real y la captura] |
+| `php artisan test` en el equipo del estudiante (PHP 8.4) | Suite Pest completa (112 pruebas) | **112 aprobadas, 399 aserciones** (23/11/2026, PHP 8.4.25 con Herd). Antes, el 22/11, 1 de 100 falló (error 19 de la sección 18.7) y se corrigió |
 | Colección Postman (Collection Runner) | 37 solicitudes con validación automática del código HTTP | [Completar con el resultado real] |
 | Prueba manual en navegador y modo celular | Navegación, formularios, mensajes | [Completar] |
 
