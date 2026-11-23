@@ -1,0 +1,49 @@
+# =====================================================================
+# Archivos que NO se suben a GitHub
+# =====================================================================
+
+# --- Configuración local y secretos (APP_KEY, contraseñas, rutas de tu equipo) ---
+.env
+.env.backup
+.env.production
+.env.*.local
+auth.json
+
+# --- Dependencias (se instalan con "composer install") ---
+/vendor
+/node_modules
+
+# --- Base de datos local de desarrollo (contiene datos de tu equipo) ---
+/database/*.sqlite
+/database/*.sqlite-journal
+
+# --- Archivos generados por Laravel ---
+/public/storage
+/public/hot
+/public/build
+/storage/*.key
+/storage/pail
+.phpunit.result.cache
+/.phpunit.cache
+
+# --- Herramientas de desarrollo asistido por IA (se regeneran con laravel/boost) ---
+/.agents
+/.ai
+/.codex
+/.cursor
+/.claude
+AGENTS.md
+CLAUDE.md
+
+# --- Editores y sistema operativo ---
+/.idea
+/.vscode/*
+!/.vscode/extensions.json
+!/.vscode/settings.json
+/.zed
+/.nova
+.phpactor.json
+_ide_helper.php
+.DS_Store
+Thumbs.db
+*.log
