@@ -1,0 +1,1367 @@
+/* =====================================================================
+   HYDROPAY — HOJA DE ESTILOS
+   Concepto: ventanilla del servicio municipal de agua. Membrete azul agua
+   profundo con una línea azul clara (el nivel del agua), pestañas visibles,
+   superficies planas y cifras grandes. El rojo se reserva para lo que se debe.
+   Tipografías: Atkinson Hyperlegible Next (texto; hecha para baja visión)
+   y Archivo semicondensada (títulos e importes). Sin internet se usan las
+   del equipo.
+   ===================================================================== */
+
+/* ---------- 1. Colores, tipografías y medidas ---------- */
+:root {
+    --agua: #0f4c81;           /* Color de identidad: azul agua profundo (membrete, botones principales y enlaces). */
+    --agua-hondo: #0a3760;     /* Azul más oscuro: botón al pasar el cursor. */
+    --agua-claro: #e6f0f8;     /* Fondo suave del buscador principal y avisos. */
+    --agua-linea: #b3cbe2;     /* Bordes sobre fondos azul claro. */
+    --nivel: #5fb4e8;          /* Azul claro: línea bajo el membrete (el nivel del agua). */
+    --papel: #f3f6f9;          /* Fondo de la página (blanco frío). */
+    --blanco: #ffffff;         /* Superficies: tablas, formularios y cifras. */
+    --tinta: #172433;          /* Texto principal. */
+    --tinta-suave: #526173;    /* Texto secundario, etiquetas y notas. */
+    --linea: #d3dce6;          /* Bordes y separadores. */
+    --linea-fuerte: #a4b3c3;   /* Borde de los campos de captura. */
+    --adeudo: #b3261e;         /* Rojo: adeudos, vencidos y errores. */
+    --adeudo-claro: #fbeae8;   /* Fondo de errores. */
+    --pagado: #23703a;         /* Verde: pagado y operación exitosa. */
+    --pagado-claro: #e3f1e6;   /* Fondo de éxito. */
+    --pendiente: #875200;      /* Ámbar oscuro: pendiente de pago. */
+    --pendiente-claro: #fbf0d5;/* Fondo de pendiente. */
+    --info: #2d5b87;           /* Azul: avisos informativos. */
+    --info-claro: #e6eef6;     /* Fondo informativo. */
+    --foco: #f0b323;           /* Contorno de foco del teclado (amarillo maíz, visible sobre claro y oscuro). */
+    --radio: 6px;              /* Esquinas de botones y campos. */
+    --radio-superficie: 8px;   /* Esquinas de paneles. */
+    --fuente: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, "Segoe UI", Roboto, sans-serif;
+    --fuente-titulos: "Archivo", "Arial Narrow", system-ui, "Segoe UI", sans-serif;
+}
+
+/* ---------- 2. Reglas base ---------- */
+/* El ancho incluye relleno y borde: evita desbordes. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Texto y fondo de toda la página. */
+body {
+    margin: 0;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--fuente);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Títulos: Archivo semicondensada. */
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-family: var(--fuente-titulos);
+    font-stretch: 87.5%;
+    line-height: 1.15;
+    color: var(--tinta);
+}
+
+/* Título de cada pantalla. */
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* Título de cada sección. */
+h2 {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+/* Párrafos sin margen superior. */
+p {
+    margin: 0 0 12px;
+}
+
+/* Enlaces: color azul agua y subrayado discreto. */
+a {
+    color: var(--agua);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+/* Subrayado más marcado al pasar el cursor. */
+a:hover {
+    color: var(--agua-hondo);
+    text-decoration-thickness: 2px;
+}
+
+/* Contorno visible al navegar con teclado (accesibilidad). */
+:focus-visible {
+    outline: 3px solid var(--foco);
+    outline-offset: 2px;
+}
+
+/* Texto solo para lectores de pantalla. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Enlace "Saltar al contenido": oculto hasta que recibe el foco con Tab. */
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 12px;
+    z-index: 100;
+    padding: 10px 14px;
+    background: var(--foco);
+    color: var(--tinta);
+    font-weight: 700;
+    border-radius: var(--radio);
+}
+
+/* Aparece al enfocarlo. */
+.skip-link:focus {
+    top: 12px;
+}
+
+/* Ancho máximo del contenido, centrado. */
+.contenedor {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ---------- 3. Membrete (encabezado verde azul agua) ---------- */
+/* Franja superior con la marca y la sesión; la línea inferior es el nivel del agua. */
+.membrete {
+    background: var(--agua);
+    border-bottom: 3px solid var(--nivel);
+    color: var(--blanco);
+}
+
+/* Marca a la izquierda y sesión a la derecha. */
+.membrete-fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 24px;
+    min-height: 68px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Marca: gota + nombre + organismo. */
+.marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* La marca no cambia de color al pasar el cursor. */
+.marca:hover {
+    color: inherit;
+}
+
+/* Círculo blanco con la gota azul agua. */
+.marca-gota {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border-radius: 50%;
+    background: var(--blanco);
+    color: var(--agua);
+}
+
+/* Nombre y organismo, uno debajo del otro. */
+.marca-texto {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+/* Nombre del sistema. */
+.marca-texto strong {
+    font-family: var(--fuente-titulos);
+    font-stretch: 87.5%;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+}
+
+/* Nombre del organismo operador. */
+.marca-texto small {
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+/* Bloque de sesión: usuario, contraseña y salida. */
+.sesion {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 18px;
+    font-size: 14px;
+}
+
+/* Nombre del usuario con su rol. */
+.sesion-usuario {
+    font-weight: 700;
+}
+
+/* Rol junto al nombre. */
+.sesion-usuario small {
+    margin-left: 6px;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+/* Enlace "Mi contraseña" en blanco. */
+.sesion-enlace {
+    color: var(--blanco);
+}
+
+/* Se mantiene blanco al pasar el cursor. */
+.sesion-enlace:hover {
+    color: var(--blanco);
+}
+
+/* El formulario de salida no agrega espacios. */
+.sesion form {
+    margin: 0;
+}
+
+/* Botón "Cerrar sesión": contorno blanco. */
+.sesion-salir {
+    min-height: 34px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: var(--radio);
+    background: transparent;
+    color: var(--blanco);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Relleno suave al pasar el cursor. */
+.sesion-salir:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- 4. Pestañas de navegación ---------- */
+/* Barra blanca bajo el membrete; se queda arriba al desplazarse. */
+.pestanas {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--blanco);
+    border-bottom: 1px solid var(--linea);
+}
+
+/* Fila de pestañas; en celular se desliza de lado. */
+.pestanas-fila {
+    display: flex;
+    align-items: stretch;
+    gap: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+/* Oculta la barra de desplazamiento en Chrome y Edge. */
+.pestanas-fila::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cada pestaña. */
+.pestana {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 14px 13px;
+    color: var(--tinta-suave);
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Pestaña al pasar el cursor. */
+.pestana:hover {
+    color: var(--tinta);
+}
+
+/* Pestaña del módulo abierto: texto azul agua y barra inferior. */
+.pestana.activa {
+    color: var(--agua);
+}
+
+/* Barra inferior de la pestaña activa. */
+.pestana.activa::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: -1px;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    background: var(--agua);
+}
+
+/* Separador entre operación diaria y administración. */
+.pestanas-separador {
+    align-self: center;
+    width: 1px;
+    height: 20px;
+    margin: 0 10px;
+    background: var(--linea);
+}
+
+/* ---------- 5. Contenido, ruta de navegación y títulos ---------- */
+/* Área principal. */
+main {
+    padding: 22px 0 56px;
+}
+
+/* Al saltar al contenido no se dibuja contorno en todo el bloque. */
+main:focus {
+    outline: none;
+}
+
+/* Ruta de navegación (Inicio › Clientes › Editar). */
+.migas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+    color: var(--tinta-suave);
+    font-size: 14px;
+}
+
+/* Título de la pantalla con sus botones a la derecha. */
+.page-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px 20px;
+    margin-bottom: 22px;
+}
+
+/* Subtítulo bajo el título. */
+.page-heading .muted {
+    margin: 6px 0 0;
+}
+
+/* Texto secundario. */
+.muted {
+    color: var(--tinta-suave);
+}
+
+/* Texto de ayuda bajo los campos. */
+.hint {
+    display: block;
+    margin-top: 6px;
+    color: var(--tinta-suave);
+    font-size: 14px;
+}
+
+/* ---------- 6. Paneles y cuadrículas ---------- */
+/* Superficie blanca para tablas, formularios y datos. Sin sombra. */
+.panel {
+    margin-bottom: 22px;
+    padding: 20px 22px;
+    background: var(--blanco);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio-superficie);
+}
+
+/* Título dentro del panel. */
+.panel > h2 {
+    margin-bottom: 14px;
+}
+
+/* Dos paneles lado a lado. */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    align-items: start;
+    margin-bottom: 22px;
+}
+
+/* Dentro de la cuadrícula el panel no suma margen inferior. */
+.grid-2 > .panel {
+    margin-bottom: 0;
+}
+
+/* Datos de un registro (cliente, cobro, pago). */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px 28px;
+}
+
+/* Etiqueta del dato. */
+.detail-item small {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--tinta-suave);
+    font-size: 14px;
+}
+
+/* Valor del dato (corta palabras largas como correos). */
+.detail-item strong {
+    display: block;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+/* Mensaje cuando no hay registros: dice qué hacer. */
+.empty-state {
+    padding: 28px 16px;
+    color: var(--tinta-suave);
+    text-align: center;
+}
+
+/* Título dentro de un estado vacío. */
+.empty-state h2 {
+    margin-bottom: 6px;
+    font-size: 19px;
+}
+
+/* ---------- 7. Cifras (componente <x-indicador>) ---------- */
+/* Fila de cifras: una sola superficie dividida por líneas (no tarjetas sueltas). */
+.cifras {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1px;
+    margin-bottom: 22px;
+    background: var(--linea);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio-superficie);
+    overflow: hidden;
+}
+
+/* Cada cifra. */
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 18px 20px 16px;
+    background: var(--blanco);
+    color: var(--tinta);
+    text-decoration: none;
+}
+
+/* La cifra con enlace se ilumina al pasar el cursor. */
+.stat-card-enlace:hover {
+    background: #f4f8fc;
+    color: var(--tinta);
+}
+
+/* Contorno de foco dentro de la superficie. */
+.stat-card-enlace:focus-visible {
+    outline-offset: -3px;
+}
+
+/* Nombre de la cifra. */
+.stat-label {
+    color: var(--tinta-suave);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Valor: Archivo grande con números de ancho fijo. */
+.stat-value {
+    font-family: var(--fuente-titulos);
+    font-stretch: 87.5%;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Enlace o nota bajo la cifra. */
+.stat-note {
+    color: var(--tinta-suave);
+    font-size: 14px;
+}
+
+/* En las cifras con enlace la nota se ve como enlace. */
+.stat-card-enlace .stat-note {
+    color: var(--agua);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Importes cobrados. */
+.money-positive {
+    color: var(--pagado);
+}
+
+/* Importes que se deben. */
+.money-negative {
+    color: var(--adeudo);
+}
+
+/* ---------- 8. Inicio: buscador principal y accesos ---------- */
+/* Buscador de clientes: lo primero que usa el cajero. */
+.buscador-principal {
+    margin-bottom: 22px;
+    padding: 20px 22px;
+    background: var(--agua-claro);
+    border: 1px solid var(--agua-linea);
+    border-radius: var(--radio-superficie);
+}
+
+/* Etiqueta "Buscar cliente". */
+.buscador-principal label {
+    display: block;
+    margin-bottom: 10px;
+    font-family: var(--fuente-titulos);
+    font-stretch: 87.5%;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--agua-hondo);
+}
+
+/* Campo y botón en una fila. */
+.buscador-fila {
+    display: flex;
+    gap: 10px;
+}
+
+/* Campo grande, fácil de tocar. */
+.buscador-fila input {
+    flex: 1;
+    min-height: 52px;
+    font-size: 18px;
+}
+
+/* Botón a la misma altura del campo. */
+.buscador-fila .btn {
+    min-height: 52px;
+    padding: 0 26px;
+    font-size: 16px;
+}
+
+/* Línea informativa bajo el buscador. */
+.buscador-principal .hint {
+    margin: 10px 0 0;
+}
+
+/* Botones de acciones frecuentes. */
+.acciones-rapidas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 22px;
+}
+
+/* ---------- 9. Botones ---------- */
+/* Botón base. */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 42px;
+    padding: 0 18px;
+    border: 1px solid transparent;
+    border-radius: var(--radio);
+    font: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* Acción principal: azul agua sólido. */
+.btn-primary {
+    background: var(--agua);
+    color: var(--blanco);
+}
+
+/* Agave oscuro al pasar el cursor. */
+.btn-primary:hover {
+    background: var(--agua-hondo);
+    color: var(--blanco);
+}
+
+/* Acción secundaria: contorno azul agua. */
+.btn-secondary {
+    background: var(--blanco);
+    border-color: var(--agua-linea);
+    color: var(--agua);
+}
+
+/* Fondo azul agua claro al pasar el cursor. */
+.btn-secondary:hover {
+    background: var(--agua-claro);
+    color: var(--agua-hondo);
+}
+
+/* Acción neutra (volver, cancelar, editar). */
+.btn-light {
+    background: var(--blanco);
+    border-color: var(--linea);
+    color: var(--tinta);
+}
+
+/* Borde más marcado al pasar el cursor. */
+.btn-light:hover {
+    border-color: var(--linea-fuerte);
+    color: var(--tinta);
+}
+
+/* Acción destructiva (eliminar). */
+.btn-danger {
+    background: var(--blanco);
+    border-color: #e7b3ae;
+    color: var(--adeudo);
+}
+
+/* Fondo rojo claro al pasar el cursor. */
+.btn-danger:hover {
+    background: var(--adeudo-claro);
+    color: var(--adeudo);
+}
+
+/* Botón pequeño dentro de tablas. */
+.btn-small {
+    min-height: 34px;
+    padding: 0 12px;
+    font-size: 14px;
+}
+
+/* Botón a todo lo ancho (login). */
+.full-width {
+    width: 100%;
+}
+
+/* Botón deshabilitado. */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Grupo de botones. */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Los formularios dentro de un grupo no agregan espacios. */
+.actions form {
+    margin: 0;
+}
+
+/* Grupo centrado. */
+.actions-centro {
+    justify-content: center;
+}
+
+/* Formularios que solo contienen un botón (eliminar). */
+.form-en-linea {
+    display: inline;
+    margin: 0;
+}
+
+/* Barra de botones al final de un formulario. */
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 8px;
+    padding-top: 18px;
+    border-top: 1px solid var(--linea);
+}
+
+/* ---------- 10. Formularios y buscadores ---------- */
+/* Barra de búsqueda y filtros de los listados. */
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+/* Campo de texto del buscador. */
+.search-form input[type="search"],
+.search-form input[type="text"] {
+    flex: 1 1 260px;
+}
+
+/* Listas desplegables y campo de mes del buscador. */
+.search-form select,
+.search-form input[type="month"] {
+    flex: 0 1 220px;
+}
+
+/* Dos columnas de campos. */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 22px;
+}
+
+/* Etiqueta + campo + mensajes. */
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+/* Campo que ocupa las dos columnas. */
+.field-full {
+    grid-column: 1 / -1;
+}
+
+/* Etiqueta del campo. */
+.field label {
+    margin-bottom: 6px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Campos de captura: altos y legibles (16 px evita el zoom automático en iPhone). */
+input,
+select,
+textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--linea-fuerte);
+    border-radius: var(--radio);
+    background: var(--blanco);
+    color: var(--tinta);
+    font: inherit;
+    font-size: 16px;
+}
+
+/* Área de texto con relleno vertical. */
+textarea {
+    min-height: 96px;
+    padding: 10px 12px;
+    resize: vertical;
+}
+
+/* Archivos: sin altura forzada. */
+input[type="file"] {
+    padding: 9px 12px;
+}
+
+/* Campo con foco: borde azul agua y halo suave. */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--agua);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.22);
+}
+
+/* En campos basta el halo azul agua (el contorno amarillo queda para enlaces y botones). */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: none;
+}
+
+/* La casilla de verificación sí usa el contorno amarillo (no tiene halo visible). */
+.checkbox-field input:focus-visible {
+    outline: 3px solid var(--foco);
+    outline-offset: 2px;
+}
+
+/* Campo con error de validación (aria-invalid lo marca la vista). */
+[aria-invalid="true"] {
+    border-color: var(--adeudo);
+    background: #fff9f8;
+}
+
+/* Casilla de verificación con su texto. */
+.checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 4px 0 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* La casilla: cuadrada, color azul agua. */
+.checkbox-field input {
+    width: 20px;
+    min-height: 20px;
+    height: 20px;
+    accent-color: var(--agua);
+}
+
+/* Recuadro de la cuota del servicio (solo lo ve el administrador). */
+.fieldset-cuota {
+    margin: 4px 0 18px;
+    padding: 16px 18px 4px;
+    border: 1px solid var(--agua-linea);
+    border-radius: var(--radio-superficie);
+    background: #f3f8fc;
+}
+
+/* Título del recuadro de la cuota. */
+.fieldset-cuota legend {
+    padding: 0 6px;
+    font-family: var(--fuente-titulos);
+    font-stretch: 87.5%;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--agua-hondo);
+}
+
+/* Mensaje de error bajo el campo. */
+.error-text {
+    margin-top: 6px;
+    color: var(--adeudo);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Aviso del importe exacto a cobrar. */
+.importe-cobrar {
+    margin: 10px 0 0;
+    padding: 12px 14px;
+    border-left: 4px solid var(--agua);
+    border-radius: var(--radio);
+    background: var(--agua-claro);
+    font-weight: 700;
+}
+
+/* ---------- 11. Tablas ---------- */
+/* Permite desplazar tablas anchas de lado en celulares. */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+/* Tabla base. */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+/* Encabezados de columna: frase normal, sin mayúsculas forzadas. */
+th {
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--linea-fuerte);
+    color: var(--tinta-suave);
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* Celdas. */
+td {
+    padding: 12px;
+    border-bottom: 1px solid var(--linea);
+    vertical-align: middle;
+}
+
+/* Fila al pasar el cursor. */
+tbody tr:hover td {
+    background: #f4f8fc;
+}
+
+/* La última fila no lleva línea (el panel ya tiene borde). */
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* La primera columna (cuenta, fecha o folio) nunca se corta. */
+.table-wrapper td:first-child {
+    white-space: nowrap;
+}
+
+/* Columnas numéricas: a la derecha y con cifras alineadas. */
+.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* Totales al pie de la tabla. */
+tfoot th {
+    border-top: 2px solid var(--linea-fuerte);
+    border-bottom: 0;
+    color: var(--tinta);
+}
+
+/* Dato que solo se muestra en celular (por ejemplo, la zona bajo el nombre). */
+.solo-movil {
+    display: none;
+}
+
+/* Texto pequeño secundario dentro de celdas. */
+td small {
+    color: var(--tinta-suave);
+    font-size: 13px;
+}
+
+/* ---------- 12. Insignias de estado (componente <x-estado-cobro>) ---------- */
+/* Insignia: punto de color + texto. */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 9px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Punto de color antes del texto. */
+.badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* Pagado / activo. */
+.badge-success { background: var(--pagado-claro); color: var(--pagado); }
+/* Vencido. */
+.badge-danger { background: var(--adeudo-claro); color: var(--adeudo); }
+/* Sin pagar. */
+.badge-warning { background: var(--pendiente-claro); color: var(--pendiente); }
+/* Informativa (administrador). */
+.badge-info { background: var(--info-claro); color: var(--info); }
+/* Cancelado / inactivo. */
+.badge-muted { background: #eceff3; color: var(--tinta-suave); }
+
+/* ---------- 13. Mensajes (componente <x-alerta>) ---------- */
+/* Caja de mensaje con franja de color a la izquierda. */
+.alert {
+    margin-bottom: 18px;
+    padding: 12px 16px;
+    border-left: 4px solid currentColor;
+    border-radius: var(--radio);
+}
+
+/* Éxito. */
+.alert-success { background: var(--pagado-claro); color: #1a5a2e; }
+/* Error. */
+.alert-error { background: var(--adeudo-claro); color: #8f1f18; }
+/* Información. */
+.alert-info { background: var(--info-claro); color: #23496d; }
+/* Advertencia. */
+.alert-warning { background: var(--pendiente-claro); color: #6e4300; }
+
+/* Lista de errores dentro de la alerta. */
+.lista-errores {
+    margin: 6px 0 0;
+    padding-left: 20px;
+}
+
+/* ---------- 14. Paginación ---------- */
+/* Separación sobre la paginación. */
+.paginacion {
+    margin-top: 16px;
+}
+
+/* Lista de páginas. */
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Cada botón de página. */
+.pagination li a,
+.pagination li span {
+    display: inline-grid;
+    place-items: center;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    background: var(--blanco);
+    color: var(--tinta);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Página al pasar el cursor. */
+.pagination li a:hover {
+    border-color: var(--agua-linea);
+    background: var(--agua-claro);
+}
+
+/* Página actual. */
+.pagination li.active span { background: var(--agua); border-color: var(--agua); color: var(--blanco); }
+/* Botón deshabilitado. */
+.pagination li.disabled span { color: var(--linea-fuerte); }
+/* Texto "Mostrando x - y de z". */
+.pagination-info { margin: 10px 0 0; color: var(--tinta-suave); font-size: 14px; }
+
+/* ---------- 15. Pie de página ---------- */
+/* Línea final con el organismo y la versión. */
+.pie {
+    border-top: 1px solid var(--linea);
+    color: var(--tinta-suave);
+    font-size: 14px;
+}
+
+/* Organismo a la izquierda y versión a la derecha. */
+.pie-fila {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px 20px;
+    padding-top: 18px;
+    padding-bottom: 26px;
+}
+
+/* ---------- 16. Pantallas de acceso (login y contraseña) ---------- */
+/* Dos columnas: franja azul agua y formulario. */
+.acceso {
+    display: grid;
+    grid-template-columns: minmax(300px, 5fr) 7fr;
+    min-height: 100vh;
+    background: var(--blanco);
+}
+
+/* Franja azul agua con la marca y para qué sirve el sistema. */
+.acceso-franja {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 36px 40px 44px;
+    background: var(--agua);
+    border-right: 3px solid var(--nivel);
+    color: var(--blanco);
+}
+
+/* Frase grande sobre el servicio. */
+.acceso-lema {
+    max-width: 22ch;
+    margin: 0;
+    font-family: var(--fuente-titulos);
+    font-stretch: 87.5%;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+/* Columna del formulario, centrada. */
+.acceso-formulario {
+    display: grid;
+    place-items: center;
+    padding: 40px 24px;
+}
+
+/* Ancho cómodo del formulario. */
+.acceso-caja {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Título del formulario. */
+.acceso-caja h1 {
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+/* Enlaces bajo el formulario. */
+.guest-links {
+    margin-top: 18px;
+    color: var(--tinta-suave);
+    font-size: 14px;
+}
+
+/* ---------- 17. Páginas de error ---------- */
+/* Bloque del error con aire. */
+.error-cuerpo {
+    padding-top: 56px;
+    padding-bottom: 72px;
+}
+
+/* "Error 404". */
+.error-codigo {
+    margin-bottom: 8px;
+    color: var(--agua);
+    font-weight: 700;
+}
+
+/* Título grande del error. */
+.error-titulo {
+    margin-bottom: 12px;
+    font-size: 40px;
+}
+
+/* Explicación del error. */
+.error-mensaje {
+    max-width: 60ch;
+    margin-bottom: 24px;
+    font-size: 17px;
+}
+
+/* ---------- 18. Tabletas (≤ 900 px) ---------- */
+@media (max-width: 900px) {
+    /* Los paneles lado a lado se apilan. */
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    /* Login: la franja pasa arriba y se compacta. */
+    .acceso {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    /* Franja compacta; la línea del nivel del agua pasa abajo. */
+    .acceso-franja {
+        gap: 18px;
+        padding: 22px 20px 24px;
+        border-right: 0;
+        border-bottom: 3px solid var(--nivel);
+    }
+
+    /* Frase más pequeña. */
+    .acceso-lema {
+        max-width: none;
+        font-size: 22px;
+    }
+}
+
+/* ---------- 19. Celulares (≤ 640 px) ---------- */
+@media (max-width: 640px) {
+    /* Menos margen lateral. */
+    .contenedor {
+        padding: 0 16px;
+    }
+
+    /* Títulos un poco más pequeños. */
+    h1 {
+        font-size: 27px;
+    }
+
+    /* Nombre del organismo más compacto. */
+    .marca-texto small {
+        font-size: 12px;
+    }
+
+    /* La sesión pasa a su propia línea, debajo de la marca. */
+    .sesion {
+        width: 100%;
+        flex-wrap: nowrap;
+        gap: 14px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    /* El nombre ocupa el espacio libre y se recorta si es largo. */
+    .sesion-usuario {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* El rol se oculta en celular (ya se ve en la pantalla de usuarios). */
+    .sesion-usuario small {
+        display: none;
+    }
+
+    /* Botón de salida más compacto. */
+    .sesion-salir {
+        min-height: 32px;
+        padding: 0 10px;
+    }
+
+    /* Las pestañas se desvanecen a la derecha: indica que hay más deslizando. */
+    .pestanas-fila {
+        padding-right: 40px;
+        -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+        mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+    }
+
+    /* Título y botones apilados; los botones ocupan el ancho. */
+    .page-heading {
+        align-items: stretch;
+    }
+
+    /* La acción principal del título ocupa el ancho; "Volver" se queda de su tamaño. */
+    .page-heading > .btn-primary,
+    .page-heading > .actions {
+        width: 100%;
+    }
+
+    /* Cada botón del grupo crece para tocarse fácil. */
+    .page-heading .actions > *,
+    .page-heading .actions form .btn {
+        flex: 1 1 auto;
+    }
+
+    /* Campos en una sola columna. */
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Botones del formulario a todo lo ancho, el principal arriba. */
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    /* Botones del formulario a todo lo ancho. */
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    /* Paneles con menos relleno. */
+    .panel,
+    .buscador-principal {
+        padding: 16px;
+    }
+
+    /* Buscador principal: campo arriba, botón abajo. */
+    .buscador-fila {
+        flex-direction: column;
+    }
+
+    /* Filtros a todo lo ancho (incluye listas desplegables y campo de mes). */
+    .search-form > *,
+    .search-form select,
+    .search-form input[type="month"] {
+        flex: 1 1 100%;
+    }
+
+    /* Cifras en dos columnas. */
+    .cifras {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Cifras más compactas. */
+    .stat-card {
+        padding: 14px;
+    }
+
+    /* Valor más pequeño para que quepa el importe. */
+    .stat-value {
+        font-size: 26px;
+    }
+
+    /* Ancho mínimo: en celular la tabla se desliza en lugar de partir el texto. */
+    .table-wrapper table {
+        min-width: 600px;
+    }
+
+    /* Tablas compactas (clientes): sin ancho mínimo; se ocultan columnas secundarias. */
+    .table-wrapper table.tabla-movil {
+        min-width: 0;
+    }
+
+    /* Columnas y botones que sobran en celular (están en el detalle). */
+    .ocultar-movil {
+        display: none;
+    }
+
+    /* La zona aparece bajo el nombre. */
+    .solo-movil {
+        display: block;
+    }
+
+    /* Celdas más compactas en la tabla de clientes. */
+    .tabla-movil th,
+    .tabla-movil td {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    /* Acciones rápidas a todo lo ancho. */
+    .acciones-rapidas .btn {
+        flex: 1 1 100%;
+    }
+}
+
+/* ---------- 20. Impresión (comprobante y reportes) ---------- */
+@media print {
+    /* Se ocultan navegación, botones y filtros. */
+    .membrete,
+    .pestanas,
+    .pie,
+    .migas,
+    .btn,
+    .search-form,
+    .buscador-principal,
+    .acciones-rapidas,
+    .paginacion,
+    .no-imprimir,
+    .skip-link {
+        display: none !important;
+    }
+
+    /* Fondo blanco y texto negro. */
+    body {
+        background: var(--blanco);
+        color: #000;
+    }
+
+    /* Sin márgenes extra. */
+    main {
+        padding: 0;
+    }
+
+    /* Paneles sin borde para ahorrar tinta. */
+    .panel,
+    .cifras {
+        border: 0;
+        padding: 0;
+    }
+
+    /* Tablas completas, sin desplazamiento. */
+    .table-wrapper {
+        overflow: visible;
+    }
+}
+
+/* ---------- 21. Movimiento reducido ---------- */
+/* Respeta la preferencia del sistema de reducir animaciones. */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}
